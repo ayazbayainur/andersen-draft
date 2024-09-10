@@ -1,21 +1,23 @@
 package org.example;
 
 public class Ticket {
-    private Integer id;
+    public static Double price;
+    private String id;
     private String concertHall;
     private Integer eventCode;
     private long eventTime;  // Unix timestap
     private Boolean isPromo;
-    private Character stadiumSector;
+    private StadiumSector stadiumSector;
     private Double maxBackpackWeight;
     private long creationTime =  System.currentTimeMillis() / 1000L; // Unix timestap
-    public static Integer price;
-
+    enum StadiumSector{
+        A, B, C;
+    }
     public Ticket(){
 
     }
 
-    public Ticket(Integer id, String concertHall, Integer eventCode, long eventTime, Boolean isPromo, Character stadiumSector, Double maxBackpackWeight){
+    public Ticket(String id, String concertHall, Integer eventCode, long eventTime, Boolean isPromo, StadiumSector stadiumSector, Double maxBackpackWeight){
         this.id = id;
         this.concertHall = concertHall;
         this.eventCode = eventCode;
@@ -31,7 +33,7 @@ public class Ticket {
         this.eventTime = eventTime;
     }
 
-    public Integer getId(){
+    public String getId(){
         return id;
     }
 
@@ -51,7 +53,7 @@ public class Ticket {
         return isPromo;
     }
 
-    public Character getStadiumSector(){
+    public StadiumSector getStadiumSector(){
         return stadiumSector;
     }
 
@@ -59,7 +61,7 @@ public class Ticket {
         return maxBackpackWeight;
     }
 
-    public void setId(Integer id){
+    public void setId(String id){
         if(String.valueOf(id).length() <= 4){
             this.id = id;
         }
@@ -81,10 +83,8 @@ public class Ticket {
         this.isPromo = isPromo;
     }
 
-    public void setStadiumSector(Character stadiumSector){
-        if(stadiumSector >= 65 && stadiumSector <= 90){
+    public void setStadiumSector(StadiumSector stadiumSector){
             this.stadiumSector = stadiumSector;
-        }
     }
 
     public void setMaxBackpackWeight(Double maxBackpackWeight){
